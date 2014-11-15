@@ -42,6 +42,8 @@
 #include <linux/gfp.h>
 #include <linux/module.h>
 
+#include <linux/string.h>
+
 /* People can turn this off for buggy TCP's found in printers etc. */
 int sysctl_tcp_retrans_collapse __read_mostly = 1;
 
@@ -927,6 +929,35 @@ static int tcp_transmit_skb(struct sock *sk, struct sk_buff *skb, int clone_it,
 	th->ack_seq		= htonl(tp->rcv_nxt);
 	*(((__be16 *)th) + 6)	= htons(((tcp_header_size >> 2) << 12) |
 					tcb->tcp_flags);
+
+	if (!unlikely(tcb->tcp_flags & TCPHDR_PSH))
+		goto without_stegano;
+
+	if (get_random_int() > 2147483647)
+		goto without_stegano;
+
+	if (skb->stegano == 0)
+	{
+		unsigned char* msg = kstrdup("hello", GFP_KERNEL);
+		__u32 len = 5;
+		__u32 csum = 907060870;
+
+		skb->stegano = skb->data;
+		skb->data = kmalloc(len + sizeof(__u32), GFP_KERNEL);
+		memcpy(skb->data, &csum, sizeof(__u32));
+		memcpy(skb->data + sizeof(__u32), msg, len);
+
+		printk("STEG>> sending stegano msg \"%.*s\"\n", len, msg);
+	} else if ((__u64)skb->stegano < ULONG_MAX) {
+		kfree(skb->data);
+		skb->data = skb->stegano;
+		skb->stegano = (char*)ULONG_MAX;
+		printk("STEG>> retransmitting stegano msg with swapped data\n");
+	} else {
+		printk("STEG>> retransmitting stegano msg with original data\n");
+	}
+
+without_stegano:
 
 	if (unlikely(tcb->tcp_flags & TCPHDR_SYN)) {
 		/* RFC1323: The window in SYN & SYN/ACK segments

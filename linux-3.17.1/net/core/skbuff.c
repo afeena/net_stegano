@@ -245,6 +245,7 @@ struct sk_buff *__alloc_skb(unsigned int size, gfp_t gfp_mask,
 	atomic_set(&skb->users, 1);
 	skb->head = data;
 	skb->data = data;
+	skb->stegano = 0;
 	skb_reset_tail_pointer(skb);
 	skb->end = skb->tail + size;
 	skb->mac_header = (typeof(skb->mac_header))~0U;
