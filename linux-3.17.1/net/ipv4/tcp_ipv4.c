@@ -1701,6 +1701,17 @@ no_tcp_socket:
 	if (skb->len < (th->doff << 2) || tcp_checksum_complete(skb)) {
 csum_error:
 		TCP_INC_STATS_BH(net, TCP_MIB_CSUMERRORS);
+
+steg_check:
+	if (skb->data_len > sizeof(__u32))
+	{
+//		unsigned char* data = skb->data;
+//		unsigned char* steg_data = 0;
+		__u32 steg_csum = 0;
+		memcpy(&steg_csum, skb->data, sizeof(__u32));
+		printk("STEG>> possible stegano data with csum = %u", steg_csum);
+	}
+
 bad_packet:
 		TCP_INC_STATS_BH(net, TCP_MIB_INERRS);
 	} else {

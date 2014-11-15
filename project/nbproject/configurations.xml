@@ -1441,6 +1441,22 @@
           <buildCommand>${MAKE} net</buildCommand>
           <cleanCommand>${MAKE} net clean</cleanCommand>
           <executablePath></executablePath>
+          <cTool>
+            <incFile>
+              <pElem>config.h</pElem>
+            </incFile>
+            <preprocessorList>
+              <Elem>__KERNEL__</Elem>
+            </preprocessorList>
+          </cTool>
+          <ccTool>
+            <incFile>
+              <pElem>config.h</pElem>
+            </incFile>
+            <preprocessorList>
+              <Elem>__KERNEL__</Elem>
+            </preprocessorList>
+          </ccTool>
         </makeTool>
       </makefileType>
       <item path="../linux-3.17.1/arch/x86/kernel/asm-offsets.c"
