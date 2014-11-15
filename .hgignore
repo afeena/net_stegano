@@ -124,7 +124,6 @@ linux-3.17.1/net/bridge/
 linux-3.17.1/net/caif/ 
 linux-3.17.1/net/can/ 
 linux-3.17.1/net/ceph/ 
-linux-3.17.1/net/core/ 
 linux-3.17.1/net/dcb/ 
 linux-3.17.1/net/dccp/ 
 linux-3.17.1/net/decnet/ 
