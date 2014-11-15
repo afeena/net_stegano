@@ -1,0 +1,724 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"ca",
+				"calvinReady"
+			],
+			[
+				"cal",
+				"calvinImage"
+			],
+			[
+				"print",
+				"print_status"
+			],
+			[
+				"tra",
+				"transaction_bid"
+			],
+			[
+				"old",
+				"old_common"
+			],
+			[
+				"in",
+				"inner_id"
+			],
+			[
+				"old_",
+				"old_common"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 242.0,
+		"selected_items":
+		[
+			[
+				"sort",
+				"Sort Lines"
+			],
+			[
+				"lowe",
+				"Convert Case: Lower Case"
+			],
+			[
+				"wrap",
+				"Word Wrap: Toggle"
+			],
+			[
+				"ss bas",
+				"Set Syntax: Shell Script (Bash)"
+			],
+			[
+				"ss js",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"upp",
+				"Convert Case: Upper Case"
+			],
+			[
+				"upper",
+				"Convert Case: Upper Case"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"table",
+				"Table Editor: Disable for current syntax"
+			],
+			[
+				"ena",
+				"Table Editor: Enable for current syntax"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"case",
+				"Convert Case: Upper Case"
+			],
+			[
+				"ss di",
+				"Set Syntax: Diff"
+			],
+			[
+				"forma",
+				"SublimeAStyleFormmatter: Format Current Selection"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"ss ",
+				"Set Syntax: C++"
+			],
+			[
+				"js",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"uni",
+				"Permute Lines: Unique"
+			],
+			[
+				"wra",
+				"Word Wrap: Toggle"
+			],
+			[
+				"sql",
+				"Set Syntax: SQL"
+			],
+			[
+				"base",
+				"Base Encoding: Base64 Decode Selection(s)"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"ss sql",
+				"Set Syntax: SQL"
+			],
+			[
+				"remo",
+				"Package Control: Remove Package"
+			]
+		],
+		"width": 400.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+	],
+	"file_history":
+	[
+		"/C/Users/mainn_000/Develop/Kernel/project/.gitignore",
+		"/C/Users/mainn_000/Downloads/archlinux-2014.10.01-dual.iso",
+		"/C/Users/mainn_000/Develop/Kernel/linux-3.17.1/.gitignore",
+		"/C/Users/mainn_000/Develop/config.h",
+		"/C/Users/mainn_000/Develop/Kernel/project/nbproject/configurations.xml",
+		"/C/Users/mainn_000/Develop/KernelCheck/nbproject/configurations.xml",
+		"/C/Users/mainn_000/Develop/linux-3.16.3/net/nbproject/configurations.xml",
+		"/C/Users/mainn_000/Develop/belki_client/game/mainGame/CollectionAnimation.as",
+		"/C/Users/mainn_000/Develop/belki_client/protocol/Connection.as",
+		"/C/Users/mainn_000/Develop/belki_client/Hero.as",
+		"/C/Users/mainn_000/Develop/belki_client/game/mainGame/gameBattleNet/HeroBattle.as",
+		"/C/Users/mainn_000/Develop/Squirrels_Server/Client.cpp",
+		"/C/Users/mainn_000/Dropbox/notes/обновление кланов 18.09.sql",
+		"/C/Users/mainn_000/Develop/Squirrels_Server_Eng/AchievementCounters.cpp",
+		"/C/Users/mainn_000/Dropbox/notes/squirrels_scripts/halloween2014.sql",
+		"/C/Users/mainn_000/AppData/Local/Temp/scp05747/usr/users/tokarchyk/servers/squirrels/1.sql",
+		"/C/Users/mainn_000/AppData/Local/Temp/scp05899/usr/users/tokarchyk/servers/squirrels/scripts/ratings_halloween.php",
+		"/C/Users/mainn_000/Develop/Squirrels_Server/Client.h",
+		"/C/Users/mainn_000/Develop/Squirrels_Server/Clothes.cpp",
+		"/C/Users/mainn_000/Develop/Squirrels_Server/Player.cpp",
+		"/C/Users/mainn_000/Develop/Squirrels_Server/Player.h",
+		"/C/Users/mainn_000/Dropbox/notes/apple-checker/filtered_ap.json",
+		"/C/Users/mainn_000/Dropbox/notes/apple-checker/lib/linereader.js",
+		"/C/Users/mainn_000/Dropbox/notes/apple-checker/lib/applereceiptchecker.js",
+		"/C/Users/mainn_000/Dropbox/notes/apple-checker/main.js",
+		"/C/Users/mainn_000/Dropbox/notes/apple-checker/receipt_ap.json",
+		"/C/Users/mainn_000/Develop/Squirrels_Server_Unity/Maps.h",
+		"/C/Users/mainn_000/Dropbox/notes/buy_ap err/results.json",
+		"/C/Users/mainn_000/Dropbox/notes/apple-checker/filter_receipt.js",
+		"/C/Users/mainn_000/Dropbox/squirreljs/base/public/index.html",
+		"/C/Users/mainn_000/Develop/worker-squirrels/conf/settings.json",
+		"/C/Users/mainn_000/Develop/Squirrels_Server/Notification.cpp",
+		"/C/Users/mainn_000/Develop/Squirrels_Server/Notification.h",
+		"/C/Users/mainn_000/Dropbox/notes/apple-checker/apple_pays.json",
+		"/C/Users/mainn_000/Dropbox/notes/apple-checker/log.json",
+		"/C/Users/mainn_000/Dropbox/notes/apple-checker/results (mainnika-pc's conflicted copy 2014-10-22).json",
+		"/C/Users/mainn_000/Dropbox/notes/apple-checker/results.json",
+		"/C/Users/mainn_000/Develop/belki_client/loaders/LoaderManager_OFFERS_LIB.as",
+		"/C/Users/mainn_000/Develop/Squirrels_Server/defines_release.h",
+		"/C/Program Files/NetBeans 8.0.1/etc/netbeans.conf",
+		"/C/Users/mainn_000/Develop/Squirrels_Server/base/Counters.h",
+		"/C/Users/mainn_000/Develop/Squirrels_Server/Clothes.h",
+		"/C/Users/mainn_000/Develop/Squirrels_Server/packets.h",
+		"/C/Users/mainn_000/Develop/Squirrels_Server_Eng/Halloween.cpp",
+		"/C/Users/mainn_000/Develop/belki_client/game/mainGame/entity/editor/HintArrowObject.as",
+		"/C/Users/mainn_000/Develop/Squirrels_Server/packets.cpp",
+		"/C/Users/mainn_000/Develop/Squirrels_Server_Eng/Clothes.h",
+		"/C/Users/mainn_000/Develop/Squirrels_Server/base/Counters.cpp",
+		"/C/Users/mainn_000/Develop/Squirrels_Server/Analyzer/Counters.h",
+		"/C/Users/mainn_000/Develop/Squirrels_Server_Eng/CollectionSets.h",
+		"/C/Users/mainn_000/Develop/UnityCheck/Assets/Standard Assets/Character Controllers/Sources/Scripts/ThirdPersonController.js",
+		"/C/Users/mainn_000/Develop/Squirrels_Server/Database.h",
+		"/C/Users/mainn_000/Develop/Squirrels_Server/defines_debug.h",
+		"/C/Users/mainn_000/Develop/Squirrels_Server/Discounts.cpp",
+		"/C/Users/mainn_000/Develop/Squirrels_Server/Room.cpp",
+		"/C/Users/mainn_000/Develop/Squirrels_Server/Scripts/scripts/defines.inc.php",
+		"/C/Users/mainn_000/AppData/Roaming/Skype/My Skype Received Files/ratings_list.php",
+		"/C/Program Files/OpenVPN/config/mainnikaru.ovpn",
+		"/C/Users/mainn_000/Develop/belki_client/Config.as",
+		"/C/Program Files/OpenVPN/config/README.txt",
+		"/C/Users/mainn_000/Develop/Squirrels_Server_Eng/Player.cpp",
+		"/C/Users/mainn_000/Develop/Squirrels_Server_Eng/Player.h",
+		"/C/Users/mainn_000/Develop/Squirrels_Server_Unity/PlayerRatings.h",
+		"/C/Users/mainn_000/Develop/Squirrels_Server/base/Players.cpp",
+		"/C/Users/mainn_000/Develop/Squirrels_Server/base/Players.h",
+		"/C/Users/mainn_000/Develop/belki_client/protocol/PacketServer.as",
+		"/C/Users/mainn_000/Develop/Squirrels_Server_Eng/packets.cpp",
+		"/C/Users/mainn_000/Develop/Squirrels_Server_Eng/packets.h",
+		"/C/Users/mainn_000/Develop/Squirrels_Server/Discounts.h",
+		"/C/Users/mainn_000/Develop/Squirrels_Server_Eng/Discounts.cpp",
+		"/C/Users/mainn_000/Develop/Squirrels_Server/config_debug.xml",
+		"/C/Users/mainn_000/Develop/belki_client/dialogs/DialogEverydayBonus.as",
+		"/C/Users/mainn_000/Develop/Squirrels_Server_Eng/defines_debug.h",
+		"/C/Users/mainn_000/Develop/Squirrels_Server/Database.cpp",
+		"/C/Users/mainn_000/Develop/belki_client/dialogs/DialogAdventureTime.as",
+		"/C/Users/mainn_000/Develop/belki_client/dialogs/DialogApplications.as",
+		"/C/Users/mainn_000/Develop/Squirrels_Server_Eng/Clothes.cpp",
+		"/C/Users/mainn_000/Develop/Squirrels_Server_Eng/Client.cpp",
+		"/C/Users/mainn_000/Develop/Squirrels_Server_Eng/base/ApiBalance.cpp",
+		"/C/Users/mainn_000/Develop/Squirrels_Server_Eng/packets/server/Login.h",
+		"/C/Users/mainn_000/Develop/Squirrels_Server_Eng/packets/server/Login.cpp",
+		"/C/Users/mainn_000/Develop/Squirrels_Server_Eng/base/Counters.h",
+		"/C/Users/mainn_000/Develop/Squirrels_Server/base/ApiBalance.h",
+		"/C/Users/mainn_000/Develop/Squirrels_Server/base/ApiBalance.cpp",
+		"/C/Users/mainn_000/Develop/Squirrels_Server/base/Api.cpp",
+		"/C/Users/mainn_000/Develop/belki_client/com/greensock/plugins/AutoAlphaPlugin.as",
+		"/C/Users/mainn_000/Develop/Squirrels_Server/Achievements.cpp",
+		"/C/Users/mainn_000/Develop/Squirrels_Server/Scripts/haxelib/hscript/_Interp/Stop.enum.php",
+		"/C/Users/mainn_000/Develop/belki_client/dialogs/DialogInviteSA.as",
+		"/C/Users/mainn_000/Develop/belki_client/DrinkItemsData.as",
+		"/C/Users/mainn_000/Develop/Squirrels_Server_Eng/defines_release.h",
+		"/C/Users/mainn_000/Develop/Squirrels_Server_Eng/Analyzer/defines.h",
+		"/C/Users/mainn_000/Develop/Squirrels_Server/NotifierLevels/defines.h",
+		"/C/Users/mainn_000/Develop/Squirrels_Server/NotifierDaemon/defines.h",
+		"/C/Users/mainn_000/Develop/Squirrels_Server/Notifier/defines.h",
+		"/C/Users/mainn_000/Develop/Squirrels_Server/Analyzer/defines.h",
+		"/C/Users/mainn_000/Develop/Squirrels_Server_Unity/defines.h",
+		"/C/Users/mainn_000/Develop/Squirrels_Server_Eng/CollectionSets.cpp",
+		"/C/Users/mainn_000/Develop/Squirrels_Server_Eng/CollectionExchange.h",
+		"/C/Users/mainn_000/Develop/Squirrels_Server_Eng/CollectionExchange.cpp",
+		"/C/Users/mainn_000/Develop/Squirrels_Server/CollectionSets.h",
+		"/C/Users/mainn_000/Develop/Squirrels_Server/CollectionSets.cpp",
+		"/C/Users/mainn_000/Develop/Squirrels_Server/CollectionExchange.h",
+		"/C/Users/mainn_000/Develop/Squirrels_Server/CollectionExchange.cpp",
+		"/C/Users/mainn_000/Develop/belki_client/events/ClothesEvent.as",
+		"/C/Users/mainn_000/Develop/belki_client/dialogs/DialogExit.as",
+		"/C/Users/mainn_000/Desktop/squirrels.pub",
+		"/C/Users/mainn_000/Develop/ceasar.js",
+		"/C/Users/mainn_000/Develop/xplrunner/config.js",
+		"/C/Users/mainn_000/Develop/xplrunner/logger.js",
+		"/C/Users/mainn_000/Dropbox/notes/apple-checker/buy_ap.json",
+		"/C/Users/mainn_000/Dropbox/notes/qiwi_codes.sql",
+		"/C/Users/mainn_000/Dropbox/notes/apple-checker/apple.log",
+		"/C/Users/mainn_000/Develop/Squirrels_Server/Scripts/custom_offer.php",
+		"/C/Users/mainn_000/AppData/Local/Temp/scp32291/usr/users/tokarchyk/servers/squirrels/ratings_halloween.php",
+		"/C/Users/mainn_000/Dropbox/notes/smiles_fix2.sql",
+		"/C/Users/mainn_000/AppData/Local/Temp/scp54178/usr/users/tokarchyk/servers/squirrels/1.sql",
+		"/C/Users/mainn_000/AppData/Local/Temp/scp33909/usr/users/tokarchyk/servers/squirrels/scripts/custom_offer.php",
+		"/C/Users/mainn_000/Develop/Squirrels_Server/patch.diff",
+		"/C/Users/mainn_000/Develop/Squirrels_Server/main.cpp",
+		"/C/Users/mainn_000/Develop/Squirrels_Server/nbproject/Makefile-impl.mk",
+		"/C/Users/mainn_000/Develop/Squirrels_Server/Maps.cpp",
+		"/C/Users/mainn_000/Develop/Squirrels_Server/Analyzer/Counters.cpp",
+		"/C/Users/mainn_000/Develop/belki_client/utils/Counter.as",
+		"/C/Users/mainn_000/Develop/belki_client/mx/utils/ColorUtil.as",
+		"/C/Users/mainn_000/Develop/Squirrels_Server_Unity/Analyzer/defines_debug.h",
+		"/C/Users/mainn_000/Develop/Squirrels_Server_Unity/Analyzer/defines_release.h",
+		"/C/Users/mainn_000/Develop/Squirrels_Server_Unity/Notifier/defines_debug.h"
+	],
+	"find":
+	{
+		"height": 34.0
+	},
+	"find_in_files":
+	{
+		"height": 90.0,
+		"where_history":
+		[
+			"",
+			"C:\\Users\\mainn_000\\Develop\\Squirrels_Server_Eng",
+			"<open folders>,C:\\Users\\mainn_000\\Develop\\Squirrels_Server_Eng",
+			"<open folders>",
+			"C:\\mingw64\\build\\openssl-1.0.1i\\test",
+			"<open folders>",
+			"C:\\Users\\mainn_000\\Develop\\Squirrels_Server_Eng\\Notifier Daemon"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"^([^=]*)=(.*)$",
+			"\\n\\n",
+			"#.*\\n",
+			"sendLocation",
+			"ROUND_HERO",
+			"169",
+			"	{BAG, SHORT},\n",
+			"8046",
+			"::play_ad",
+			"play_ad",
+			"\"key\"",
+			"]}",
+			"},{",
+			"transaction_id.*product_id.*purchase_date.*inner_id",
+			"\\\"original_purchase_date_ms\\\":\\\"[^\\\"]+\\\",",
+			"\\\"original_purchase_date\\\":\\\"[^\\\"]+\\\",",
+			"\\\"purchase_date_pst\\\":\\\"[^\\\"]+\\\",",
+			"\\\"purchase_date_ms\\\":\\\"[^\\\"]+\\\",",
+			"\\\"bid\\\":\\\"[^\\\"]+\\\",",
+			"\\\"version_external_identifier\\\":\\\"[^\\\"]+\\\",",
+			"\\\"item_id\\\":\\\"[^\\\"]+\\\",",
+			"\\\"unique_vendor_identifier\\\":\\\"[^\\\"]+\\\",",
+			"\\\"quantity\\\":\\\"[^\\\"]+\\\",",
+			"\\\"app_item_id\\\":\\\"[^\\\"]+\\\",",
+			"\\\"bvrs\\\":\\\"[^\\\"]+\\\",",
+			"\\\"original_transaction_id\\\":\\\"[^\\\"]+\\\",",
+			"\\\"unique_identifier\\\":\\\"[^\\\"]+\\\",",
+			"\\\"original_purchase_date_pst\\\":\\\"[^\\\"]+\\\",",
+			"original_purchase_date_pst",
+			"\"quantity\":\"1\"",
+			"zeptolab",
+			"REMOVED",
+			"flagType++",
+			"random()",
+			"DAU",
+			"DAU\n",
+			"halloween",
+			"HALLOWEEN_PRIZE_GOLD",
+			"//",
+			"\\\\",
+			"wendigo_vi",
+			"get_candy",
+			"send_ca",
+			"cand",
+			"hallo",
+			"cand",
+			"candy",
+			"hallo",
+			"candy",
+			"hallo",
+			"\n		",
+			"hallo",
+			"\\([0-9]+\\)",
+			"SPIDER",
+			"PETITION",
+			"\\([0-9]+\\)",
+			"DISCOUNT_RANGE",
+			"DISCOUNT",
+			"\\t",
+			"TODO",
+			"counters->inc(Counters::KNOWLEDGE_PRIZES, current_prize);",
+			"TODO",
+			",",
+			"ORDER",
+			"\"",
+			",",
+			"::play",
+			" ",
+			"Image",
+			"<<<<<",
+			"<< ",
+			"type 40",
+			"type 39",
+			"Xsolla",
+			"::invite",
+			"(",
+			"++type",
+			"\\n\\n",
+			"\\n \\n",
+			"//",
+			"\\n\\n",
+			"++type",
+			"\\n \\n",
+			"\\n\\n",
+			"dummytest.c",
+			"(",
+			"\\\\\"",
+			",",
+			"calvinImage",
+			"SUBSCRIBE_HOUR",
+			"FPS_CO",
+			"::show_ad",
+			"has_free_con",
+			"login_do",
+			"FriendsOn",
+			"login_do",
+			"end_adve",
+			"add_clothes",
+			"= [0-9]+",
+			"\\([0-9]+\\)",
+			"\\\"",
+			"},",
+			"'",
+			"\"",
+			"\\n\\n",
+			", \\), ",
+			", ), ",
+			", \\), ",
+			"  ",
+			"\\[([^\\]]+)\\] => ([^\\,]+)",
+			"[0-9],([0-9])[^\\[]*",
+			"\\[([^\\]]+)\\] => ([^\\,]+)",
+			"  ",
+			" ",
+			"  ",
+			"\\[([^\\]])+\\] => ([^\\,]+)",
+			"[0-9],([0-9])[^\\[]*",
+			"(.+)\\n",
+			"\\n\\)\\n",
+			"\\[([a-z_\\-]+)\\] => ",
+			"\\[(a-z_\\-)\\]",
+			"\\n\\(\\n",
+			"\\(",
+			"([0-9]),([0-9]):\\nArray",
+			"coins_buy_time",
+			"TAIT",
+			"++next_type",
+			"packets<"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": true,
+		"replace_history":
+		[
+			"#define $1 $2",
+			"\\n",
+			"",
+			"\\\"",
+			"\\\\\"",
+			"}",
+			"\"",
+			"\\\"",
+			"\\n",
+			"},",
+			"}\\,",
+			"},",
+			"}",
+			" ",
+			"'$1': '$2'",
+			"{'err': '$1', ",
+			"'$1': '$2'",
+			" ",
+			"'$1': '$2'",
+			"{'err': '$1', ",
+			"$1, ",
+			"\\n}}\\n",
+			"'$1': ",
+			"{\\n",
+			"{",
+			"{foo: $1, err: $2, check: ",
+			"",
+			"compare",
+			"this->",
+			"\\t"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 21.0
+	},
+	"input":
+	{
+		"height": 30.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"project": "sublime.sublime-project",
+	"replace":
+	{
+		"height": 62.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"client",
+				"Squirrels_Server\\Client.cpp"
+			],
+			[
+				"no",
+				"Squirrels_Server\\Notification.h"
+			],
+			[
+				"nofi",
+				"Squirrels_Server\\Notification.cpp"
+			],
+			[
+				"hallo",
+				"Squirrels_Server_Eng\\Halloween.cpp"
+			],
+			[
+				"packet",
+				"Squirrels_Server\\packets.h"
+			],
+			[
+				"clothes",
+				"Squirrels_Server\\Clothes.h"
+			],
+			[
+				"counters",
+				"Squirrels_Server\\base\\Counters.h"
+			],
+			[
+				"room",
+				"Squirrels_Server\\Room.cpp"
+			],
+			[
+				"player",
+				"Squirrels_Server\\Player.h"
+			],
+			[
+				"player.cpp",
+				"Squirrels_Server\\Player.cpp"
+			],
+			[
+				"packets",
+				"Squirrels_Server\\packets.h"
+			],
+			[
+				"discounts",
+				"Squirrels_Server\\Discounts.cpp"
+			],
+			[
+				"debug",
+				"Squirrels_Server\\defines_debug.h"
+			],
+			[
+				"database",
+				"Squirrels_Server\\Database.h"
+			],
+			[
+				"clothe",
+				"Squirrels_Server\\Clothes.h"
+			],
+			[
+				"",
+				"Squirrels_Server_Eng\\Player.h"
+			],
+			[
+				"apibala",
+				"Squirrels_Server_Eng\\base\\ApiBalance.cpp"
+			],
+			[
+				"player.h",
+				"Squirrels_Server_Eng\\Player.h"
+			],
+			[
+				"defines",
+				"Squirrels_Server_Eng\\defines_debug.h"
+			],
+			[
+				"collec",
+				"Squirrels_Server_Eng\\CollectionSets.h"
+			],
+			[
+				"colles",
+				"Squirrels_Server_Eng\\CollectionSets.h"
+			],
+			[
+				"clot",
+				"Squirrels_Server_Eng\\Clothes.h"
+			],
+			[
+				"counters.",
+				"Squirrels_Server\\base\\Counters.h"
+			],
+			[
+				"cloth",
+				"Squirrels_Server\\Clothes.h"
+			],
+			[
+				"main.cpp",
+				"Squirrels_Server\\main.cpp"
+			],
+			[
+				"counters.h",
+				"Squirrels_Server\\base\\Counters.h"
+			],
+			[
+				"defines_re",
+				"Squirrels_Server_Eng\\defines_release.h"
+			],
+			[
+				"definesphp",
+				"Squirrels_Server_Unity\\Scripts\\defines.inc.php"
+			],
+			[
+				"buy_ap",
+				"Squirrels_Server_Unity\\Scripts\\buy_ap.php"
+			],
+			[
+				"packe",
+				"Squirrels_Server\\packets.h"
+			],
+			[
+				"pla",
+				"Squirrels_Server\\Player.cpp"
+			],
+			[
+				"maps",
+				"Squirrels_Server\\Maps.cpp"
+			],
+			[
+				"uint",
+				"belki_client\\utils\\UInt64.as"
+			],
+			[
+				"pack",
+				"Squirrels_Server\\packets.h"
+			],
+			[
+				"clo",
+				"Squirrels_Server\\Clothes.cpp"
+			],
+			[
+				"close",
+				"Squirrels_Server\\Clothes.cpp"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+			[
+				"",
+				"C:\\Users\\mainn_000\\Develop\\squirrels.sublime-project"
+			]
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 254.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

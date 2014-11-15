@@ -1,0 +1,13 @@
+{
+	"folders":
+	[
+		{
+			"follow_symlinks": true,
+			"path": "linux-3.17.1"
+		},
+		{
+			"follow_symlinks": true,
+			"path": "project"
+		}
+	]
+}
