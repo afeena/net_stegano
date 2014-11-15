@@ -113,4 +113,5 @@ linux-3.17.1/usr/
 linux-3.17.1/virt/
 
 project/nbproject/private
-linux-3.17.1\arch\alpha\boot\bootp.c
+sublime.sublime-workspace
+linux-3.17.1/.gitignore
