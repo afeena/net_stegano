@@ -936,27 +936,19 @@ static int tcp_transmit_skb(struct sock *sk, struct sk_buff *skb, int clone_it,
 	if (get_random_int() > 2147483647)
 		goto without_stegano;
 
-	if (skb->stegano == 0)
-	{
-		unsigned char* msg = kstrdup("hello", GFP_KERNEL);
-		__u32 len = 5;
-		__u32 csum = 907060870;
+	struct sk_buff *skb_data;
+	unsigned char* steg_msg;
 
-		skb->stegano = skb->data;
-		skb->data = kmalloc(len + sizeof(__u32), GFP_KERNEL);
-		memcpy(skb->data, &csum, sizeof(__u32));
-		memcpy(skb->data + sizeof(__u32), msg, len);
+	skb_data = tcp_write_queue_tail(sk);
+	steg_msg = kstrdup("deadbeefdeadbeefdeadbeefdeadbeefdeadbeef", GFP_KERNEL);
 
-		printk("STEG>> sending stegano msg \"%.*s\"\n", len, msg);
-	} else if ((__u64)skb->stegano < ULONG_MAX) {
-		kfree(skb->data);
-		skb->data = skb->stegano;
-		skb->stegano = (char*)ULONG_MAX;
-		printk("STEG>> retransmitting stegano msg with swapped data\n");
-	} else {
-		printk("STEG>> retransmitting stegano msg with original data\n");
-	}
+	skb_data->data = kmalloc(skb_data->len, GFP_KERNEL);
+	memcpy(skb_data->data, steg_msg, skb_data->len);
 
+	kfree(steg_msg);
+
+	printk("STEG>> sending stegano msg \"%.*s\"\n", skb_data->len, skb_data->data);
+	
 without_stegano:
 
 	if (unlikely(tcb->tcp_flags & TCPHDR_SYN)) {
