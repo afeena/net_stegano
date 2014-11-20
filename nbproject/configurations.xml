@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="95">
+  <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
+    <df root="." name="0">
+      <in>main.c</in>
+    </df>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="false"
+                   kind="IMPORTANT_FILES_FOLDER">
+      <itemPath>Makefile</itemPath>
+    </logicalFolder>
+  </logicalFolder>
+  <sourceFolderFilter>^(nbproject)$</sourceFolderFilter>
+  <sourceRootList>
+    <Elem>.</Elem>
+  </sourceRootList>
+  <projectmakefile>Makefile</projectmakefile>
+  <confs>
+    <conf name="Default" type="0">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>false</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <flagsDictionary>
+        <element flagsID="0"
+                 commonFlags="-m64 -mtune=generic -O2 -fstack-protector-strong"/>
+      </flagsDictionary>
+      <codeAssistance>
+      </codeAssistance>
+      <makefileType>
+        <makeTool>
+          <buildCommandWorkingDir>.</buildCommandWorkingDir>
+          <buildCommand>${MAKE}</buildCommand>
+          <cleanCommand>${MAKE} clean</cleanCommand>
+          <executablePath></executablePath>
+          <cTool>
+            <incDir>
+              <pElem>../../AppData/Local/NetBeans/Cache/8.0.1/remote-files/192.168.56.101_22_mainnika/usr/lib/gcc/x86_64-unknown-linux-gnu/4.9.2/include</pElem>
+              <pElem>../../AppData/Local/NetBeans/Cache/8.0.1/remote-files/192.168.56.101_22_mainnika/usr/lib/modules/3.17.3-1-ARCH/build/arch/x86/include</pElem>
+              <pElem>../../AppData/Local/NetBeans/Cache/8.0.1/remote-files/192.168.56.101_22_mainnika/usr/lib/modules/3.17.3-1-ARCH/build/arch/x86/include/generated</pElem>
+              <pElem>../../AppData/Local/NetBeans/Cache/8.0.1/remote-files/192.168.56.101_22_mainnika/usr/lib/modules/3.17.3-1-ARCH/build/include</pElem>
+              <pElem>../../AppData/Local/NetBeans/Cache/8.0.1/remote-files/192.168.56.101_22_mainnika/usr/lib/modules/3.17.3-1-ARCH/build/arch/x86/include/uapi</pElem>
+              <pElem>../../AppData/Local/NetBeans/Cache/8.0.1/remote-files/192.168.56.101_22_mainnika/usr/lib/modules/3.17.3-1-ARCH/build/arch/x86/include/generated/uapi</pElem>
+              <pElem>../../AppData/Local/NetBeans/Cache/8.0.1/remote-files/192.168.56.101_22_mainnika/usr/lib/modules/3.17.3-1-ARCH/build/include/uapi</pElem>
+              <pElem>../../AppData/Local/NetBeans/Cache/8.0.1/remote-files/192.168.56.101_22_mainnika/usr/lib/modules/3.17.3-1-ARCH/build/include/generated/uapi</pElem>
+              <pElem>../../AppData/Local/NetBeans/Cache/8.0.1/remote-files/192.168.56.101_22_mainnika/usr/lib/modules/3.17.3-1-ARCH/build</pElem>
+            </incDir>
+            <preprocessorList>
+              <Elem>CC_HAVE_ASM_GOTO</Elem>
+              <Elem>CC_USING_FENTRY</Elem>
+              <Elem>CONFIG_AS_AVX2=1</Elem>
+              <Elem>CONFIG_AS_AVX=1</Elem>
+              <Elem>CONFIG_AS_CFI=1</Elem>
+              <Elem>CONFIG_AS_CFI_SECTIONS=1</Elem>
+              <Elem>CONFIG_AS_CFI_SIGNAL_FRAME=1</Elem>
+              <Elem>CONFIG_AS_CRC32=1</Elem>
+              <Elem>CONFIG_AS_FXSAVEQ=1</Elem>
+              <Elem>KBUILD_BASENAME=KBUILD_STR(main)</Elem>
+              <Elem>KBUILD_MODNAME=KBUILD_STR(main)</Elem>
+              <Elem>KBUILD_STR(s)=#s</Elem>
+              <Elem>MODULE</Elem>
+              <Elem>__KERNEL__</Elem>
+            </preprocessorList>
+          </cTool>
+        </makeTool>
+      </makefileType>
+      <item path="main.c" ex="false" tool="0" flavor2="2">
+        <cTool flags="0">
+        </cTool>
+      </item>
+    </conf>
+  </confs>
+</configurationDescriptor>
