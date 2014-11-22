@@ -4,14 +4,8 @@
     <df root="../headers" name="0">
     </df>
     <df root="." name="1">
-      <in>main.c</in>
+      <in>stegsender.c</in>
     </df>
-    <logicalFolder name="ExternalFiles"
-                   displayName="Important Files"
-                   projectFiles="false"
-                   kind="IMPORTANT_FILES_FOLDER">
-      <itemPath>Makefile</itemPath>
-    </logicalFolder>
   </logicalFolder>
   <sourceFolderFilter>^(nbproject)$</sourceFolderFilter>
   <sourceRootList>
@@ -39,7 +33,7 @@
               <pElem>../headers</pElem>
             </incDir>
             <incFile>
-              <pElem>config.h</pElem>
+              <pElem>../config.h</pElem>
             </incFile>
             <preprocessorList>
               <Elem>CC_HAVE_ASM_GOTO</Elem>
@@ -60,7 +54,7 @@
           </cTool>
         </makeTool>
       </makefileType>
-      <item path="main.c" ex="false" tool="0" flavor2="2">
+      <item path="stegsender.c" ex="false" tool="0" flavor2="2">
       </item>
     </conf>
   </confs>

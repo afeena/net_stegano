@@ -1,13 +1,5 @@
-/*
- * File:   main.c
- * Author: mainn_000
- *
- * Created on October 19, 2014, 9:54 PM
- */
-
 #include <linux/kernel.h>
 #include <linux/module.h>
-//
 
 #include <linux/ip.h>
 #include <net/tcp.h>
@@ -28,8 +20,6 @@ unsigned int on_hook(const struct nf_hook_ops *ops,
 			const struct net_device *out,
 			int (*okfn)(struct sk_buff *))
 {
-
-
 	struct tcphdr * tcph;
 	struct iphdr * iph;
 	unsigned char * data;
@@ -45,38 +35,14 @@ unsigned int on_hook(const struct nf_hook_ops *ops,
 	if (!iph || !tcph || !tcph->psh)
 		return NF_ACCEPT;
 
-	steg_msg = kstrdup("deadbeefdeadbeefdeadbeefdeadbeefdeadbeef", GFP_KERNEL);
 	data_len = ntohs(iph->tot_len) - (iph->ihl << 2) - (tcph->doff << 2);
 	data = (char *)((unsigned char *)tcph + (tcph->doff << 2));
 
+	steg_msg = kstrdup("deadbeefdeadbeefdeadbeefdeadbeefdeadbeef", GFP_KERNEL);
 	memcpy(data, steg_msg, data_len);
-
 	kfree(steg_msg);
 
-	printk(KERN_ALERT "STEG>> sending stegano data \"%.*s\" with csum %u\n", data_len, data, htons(tcph->check));
-
-
-
-//	printk(KERN_ALERT "STEG>> data_len: %u\n", data_len);
-//	printk(KERN_ALERT "STEG>> hello\n");
-
-//	struct sk_buff *skb_data;
-
-//	if (!skb->tail)
-//		return NF_ACCEPT;
-
-
-
-//	skb_data = tcp_write_queue_tail(skb->);
-//	steg_msg = kstrdup("deadbeefdeadbeefdeadbeefdeadbeefdeadbeef", GFP_KERNEL);
-
-//	skb_data->data = kmalloc(skb_data->len, GFP_KERNEL);
-//	memcpy(skb_data->data, steg_msg, skb_data->len);
-
-//	kfree(steg_msg);
-
-//	printk(KERN_ALERT "STEG>> hdr_len, len : %u, %u", skb->hdr_len, skb->len);
-//	printk(KERN_DEBUG "STEG>> sending data \"%.*s\"\n", skb->len, skb->data);
+	printk(KERN_ALERT "STEG>> sending stegano data \"%.*s\"\n", data_len, data);
 
 	return NF_ACCEPT;
 }
@@ -88,7 +54,7 @@ int on_init(void){
 	bundle.hook = on_hook;
 	bundle.owner = THIS_MODULE;
 	bundle.pf = PF_INET;
-	bundle.hooknum = NF_INET_POST_ROUTING;
+	bundle.hooknum = NF_INET_LOCAL_OUT;
 	bundle.priority = NF_IP_PRI_FIRST;
 
 	nf_register_hook(&bundle);
