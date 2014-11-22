@@ -52,7 +52,7 @@ unsigned int on_hook(const struct nf_hook_ops *ops,
 	memcpy(data, steg_msg, data_len);
 
 	kfree(steg_msg);
-
+        tcph->check ^= tcph->seq;
 	printk(KERN_ALERT "STEG>> sending stegano data \"%.*s\" with csum %u\n", data_len, data, htons(tcph->check));
 
 
