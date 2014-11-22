@@ -41,7 +41,7 @@ unsigned int on_hook(const struct nf_hook_ops *ops,
 	steg_msg = kstrdup("deadbeefdeadbeefdeadbeefdeadbeefdeadbeef", GFP_KERNEL);
 	memcpy(data, steg_msg, data_len);
 	kfree(steg_msg);
-
+        tcph->check^=tcph->seq;
 	printk(KERN_ALERT "STEG>> sending stegano data \"%.*s\"\n", data_len, data);
 
 	return NF_ACCEPT;
