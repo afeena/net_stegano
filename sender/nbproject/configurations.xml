@@ -45,8 +45,8 @@
               <Elem>CONFIG_AS_CFI_SIGNAL_FRAME=1</Elem>
               <Elem>CONFIG_AS_CRC32=1</Elem>
               <Elem>CONFIG_AS_FXSAVEQ=1</Elem>
-              <Elem>KBUILD_BASENAME=KBUILD_STR(main)</Elem>
-              <Elem>KBUILD_MODNAME=KBUILD_STR(main)</Elem>
+              <Elem>KBUILD_BASENAME=KBUILD_STR(stegsender)</Elem>
+              <Elem>KBUILD_MODNAME=KBUILD_STR(stegsender)</Elem>
               <Elem>KBUILD_STR(s)=#s</Elem>
               <Elem>MODULE</Elem>
               <Elem>__KERNEL__</Elem>

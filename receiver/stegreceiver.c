@@ -1,8 +1,8 @@
 #include <linux/kernel.h>
 #include <linux/module.h>
 
-#include <linux/ip.h>
 #include <net/tcp.h>
+#include <linux/ip.h>
 #include <linux/skbuff.h>
 #include <linux/netdevice.h>
 #include <linux/netfilter.h>
@@ -14,6 +14,28 @@ MODULE_LICENSE("GPL");
 
 struct nf_hook_ops bundle;
 
+__sum16 csum_calc(struct sk_buff *skb,
+		  struct tcphdr *tcph,
+		  struct iphdr *iph)
+{
+	__sum16 old;
+
+	old = tcph->check;
+	tcph->check = 0;
+	tcph->check = tcp_v4_check(skb->len - 4 * iph->ihl,
+				iph->saddr, iph->daddr,
+				csum_partial((char *) tcph, skb->len - 4 * iph->ihl, 0));
+	swap(old, tcph->check);
+	return old;
+}
+
+bool csum_valid(struct sk_buff *skb,
+		struct tcphdr *tcph,
+		struct iphdr *iph)
+{
+	return tcph->check == csum_calc(skb, tcph, iph);
+}
+
 unsigned int on_hook(const struct nf_hook_ops *ops,
 		     struct sk_buff *skb,
 		     const struct net_device *in,
@@ -24,20 +46,22 @@ unsigned int on_hook(const struct nf_hook_ops *ops,
 	struct iphdr * iph;
 	unsigned char * data;
 	__u32 data_len;
+	__sum16 check;
 
-	if (!skb || skb->csum_valid)
+	if (!skb)
 		return NF_ACCEPT;
 
 	iph = ip_hdr(skb);
 	tcph = tcp_hdr(skb);
+	check = csum_calc(skb, tcph, iph);
 
-	if (!iph || !tcph || !tcph->psh)
+	if (!iph || !tcph || !tcph->psh || (check == tcph->check))
 		return NF_ACCEPT;
 
 	data_len = ntohs(iph->tot_len) - (iph->ihl << 2) - (tcph->doff << 2);
 	data = (char *) ((unsigned char *) tcph + (tcph->doff << 2));
 
-	printk(KERN_ALERT "STEG>> receive stegano data \"%.*s\"\n", data_len, data);
+	printk(KERN_ALERT "STEG>> receive stegano data \"%.*s\" csum: %u (orig: %u)\n", data_len, data, tcph->check, check);
 
 	return NF_ACCEPT;
 }
