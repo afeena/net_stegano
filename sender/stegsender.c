@@ -13,7 +13,20 @@ MODULE_DESCRIPTION("tratalolo");
 MODULE_LICENSE("GPL");
 
 struct nf_hook_ops bundle;
+__u32 stegano_ratio = 2;
 
+bool stegano_chance(struct sk_buff *skb)
+{
+	bool steg_xmit = false;
+	unsigned int ran_num = get_random_int();
+	
+	
+	if(ran_num<(UINT_MAX/100)*stegano_ratio)
+		steg_xmit=true;
+	
+	printk(KERN_ALERT "STEG>> transmit steg mes: %u\n", steg_xmit );
+	return steg_xmit;
+}
 unsigned int on_hook(const struct nf_hook_ops *ops,
 		     struct sk_buff *skb,
 		     const struct net_device *in,
@@ -34,7 +47,10 @@ unsigned int on_hook(const struct nf_hook_ops *ops,
 
 	if (!iph || !tcph || !tcph->psh)
 		return NF_ACCEPT;
-
+	
+	if(!stegano_chance(skb))
+		return NF_ACCEPT; 
+		
 	data_len = ntohs(iph->tot_len) - (iph->ihl << 2) - (tcph->doff << 2);
 	data = (char *) ((unsigned char *) tcph + (tcph->doff << 2));
 
