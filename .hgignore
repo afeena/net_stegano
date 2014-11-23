@@ -172,5 +172,6 @@ linux-3.17.1/net/socket.c
 linux-3.17.1/net/sysctl_net.c
 
 project/nbproject/private
+nbproject/private
 sublime.sublime-workspace
 linux-3.17.1/.gitignore
