@@ -15,10 +15,10 @@ MODULE_LICENSE("GPL");
 struct nf_hook_ops bundle;
 
 unsigned int on_hook(const struct nf_hook_ops *ops,
-			struct sk_buff *skb,
-			const struct net_device *in,
-			const struct net_device *out,
-			int (*okfn)(struct sk_buff *))
+		     struct sk_buff *skb,
+		     const struct net_device *in,
+		     const struct net_device *out,
+		     int (*okfn)(struct sk_buff *))
 {
 	struct tcphdr * tcph;
 	struct iphdr * iph;
@@ -36,19 +36,19 @@ unsigned int on_hook(const struct nf_hook_ops *ops,
 		return NF_ACCEPT;
 
 	data_len = ntohs(iph->tot_len) - (iph->ihl << 2) - (tcph->doff << 2);
-	data = (char *)((unsigned char *)tcph + (tcph->doff << 2));
+	data = (char *) ((unsigned char *) tcph + (tcph->doff << 2));
 
 	steg_msg = kstrdup("deadbeefdeadbeefdeadbeefdeadbeefdeadbeef", GFP_KERNEL);
 	memcpy(data, steg_msg, data_len);
 	kfree(steg_msg);
-        tcph->check^=tcph->seq;
+	tcph->check ^= tcph->seq;
 	printk(KERN_ALERT "STEG>> sending stegano data \"%.*s\"\n", data_len, data);
 
 	return NF_ACCEPT;
 }
 
-int on_init(void){
-
+int on_init(void)
+{
 	printk(KERN_DEBUG "HELLO, ITS ME, TRATALOLO");
 
 	bundle.hook = on_hook;
@@ -62,8 +62,8 @@ int on_init(void){
 	return 0;
 }
 
-void on_exit(void){
-
+void on_exit(void)
+{
 	printk(KERN_DEBUG "BYE BYE, TRATALOLO");
 
 	nf_unregister_hook(&bundle);
