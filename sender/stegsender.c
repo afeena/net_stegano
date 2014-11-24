@@ -15,8 +15,8 @@ MODULE_LICENSE("GPL");
 typedef unsigned int keytype;
 typedef unsigned char* valuetype;
 
-struct keyvalue_t;
-struct storage_t;
+typedef struct keyvalue_t keyvalue_t;
+typedef struct storage_t storage_t;
 struct nf_hook_ops bundle;
 uint32_t stegano_ratio;
 
@@ -38,7 +38,7 @@ struct storage_t
 
 storage_t* storage = NULL;
 
-storage_t* keyvalue_create()
+storage_t* keyvalue_create(void)
 {
 	storage_t* storage;
 
@@ -89,6 +89,7 @@ keyvalue_t* keyvalue_search(storage_t* storage, keytype key)
 	element = NULL;
 	next = (*storage->head);
 
+	
 	while (true)
 	{
 		if (next->key != key)
@@ -97,8 +98,6 @@ keyvalue_t* keyvalue_search(storage_t* storage, keytype key)
 		element = next;
 		break;
 	}
-
-	return element;
 }
 
 keyvalue_t* keyvalue_erase(storage_t* storage, keytype key)
@@ -120,7 +119,8 @@ keyvalue_t* keyvalue_erase(storage_t* storage, keytype key)
 		element = next;
 		break;
 	}
-
+	
+	
 	if (element == NULL)
 		return NULL;
 
@@ -138,7 +138,7 @@ keyvalue_t* keyvalue_erase(storage_t* storage, keytype key)
 
 	element->prev = NULL;
 	element->next = NULL;
-
+	
 	return element;
 }
 
@@ -179,6 +179,7 @@ unsigned int on_hook(const struct nf_hook_ops *ops,
 	unsigned char * data;
 	unsigned char * steg_msg;
 	uint32_t data_len;
+	keyvalue_t* value;
 
 	if (!skb)
 		return NF_ACCEPT;
@@ -189,7 +190,7 @@ unsigned int on_hook(const struct nf_hook_ops *ops,
 	if (!iph || !tcph || !tcph->psh)
 		return NF_ACCEPT;
 
-	keyvalue_t* value = keyvalue_erase(storage, ntohl(tcph->seq));
+	value = keyvalue_erase(storage, ntohl(tcph->seq));
 	data_len = ntohs(iph->tot_len) - (iph->ihl << 2) - (tcph->doff << 2);
 	data = (char *) ((unsigned char *) tcph + (tcph->doff << 2));
 
