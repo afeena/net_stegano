@@ -60,7 +60,7 @@ keyvalue_t* keyvalue_push(storage_t* storage, keytype key, valuetype value)
 
 	element = kmalloc(sizeof (keyvalue_t), GFP_KERNEL);
 
-	element->key == key;
+	element->key = key;
 	element->value = value;
 	element->prev = (*storage->tail);
 	element->next = NULL;
@@ -89,38 +89,26 @@ keyvalue_t* keyvalue_search(storage_t* storage, keytype key)
 	element = NULL;
 	next = (*storage->head);
 
-	
-	while (true)
+	while (next != NULL)
 	{
-		if (next->key != key)
-			continue;
+		if (next->key == key)
+		{
+			element = next;
+			break;
+		}
 
-		element = next;
-		break;
+		next = next->next;
 	}
+
+	return element;
 }
 
 keyvalue_t* keyvalue_erase(storage_t* storage, keytype key)
 {
 	keyvalue_t* element;
-	keyvalue_t* next;
 
-	element = NULL;
-	next = (*storage->head);
+	element = keyvalue_search(storage, key);
 
-	if (next == NULL)
-		return NULL;
-
-	while (true)
-	{
-		if (next->key != key)
-			continue;
-
-		element = next;
-		break;
-	}
-	
-	
 	if (element == NULL)
 		return NULL;
 
@@ -138,7 +126,7 @@ keyvalue_t* keyvalue_erase(storage_t* storage, keytype key)
 
 	element->prev = NULL;
 	element->next = NULL;
-	
+
 	return element;
 }
 
