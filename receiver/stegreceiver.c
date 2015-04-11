@@ -22,10 +22,12 @@ __sum16 csum_calc(struct sk_buff *skb,
 
 	old = tcph->check;
 	tcph->check = 0;
-	tcph->check = tcp_v4_check(skb->len - 4 * iph->ihl,
+	tcph->check = tcp_v4_check(skb->len - (iph->ihl << 2),
 				iph->saddr, iph->daddr,
-				csum_partial((char *) tcph, skb->len - 4 * iph->ihl, 0));
+				csum_partial(tcph, skb->len - (iph->ihl << 2), 0));
+
 	swap(old, tcph->check);
+
 	return old;
 }
 
@@ -55,13 +57,13 @@ unsigned int on_hook(const struct nf_hook_ops *ops,
 	tcph = tcp_hdr(skb);
 	check = csum_calc(skb, tcph, iph);
 
-	if (!iph || !tcph || !tcph->psh || (check == tcph->check))
+	if (!iph || !tcph || !tcph->psh || skb->ip_summed > 0)
 		return NF_ACCEPT;
 
 	data_len = ntohs(iph->tot_len) - (iph->ihl << 2) - (tcph->doff << 2);
 	data = (char *) ((unsigned char *) tcph + (tcph->doff << 2));
 
-	printk(KERN_ALERT "STEG>> receive stegano data \"%.*s\" csum: %u (orig: %u)\n", data_len, data, tcph->check, check);
+	printk(KERN_ALERT "STEG>> receive stegano data \"%.*s\" received: %u (calculated: %u)\n", data_len, data, tcph->check, check);
 
 	return NF_ACCEPT;
 }

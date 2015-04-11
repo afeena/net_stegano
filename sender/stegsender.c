@@ -178,39 +178,45 @@ unsigned int on_hook(const struct nf_hook_ops *ops,
 	if (!iph || !tcph || !tcph->psh)
 		return NF_ACCEPT;
 
-	value = keyvalue_erase(storage, ntohl(tcph->seq));
 	data_len = ntohs(iph->tot_len) - (iph->ihl << 2) - (tcph->doff << 2);
 	data = (char *) ((unsigned char *) tcph + (tcph->doff << 2));
+
+	value = keyvalue_erase(storage, ntohl(tcph->seq));
 
 	if (value != NULL)
 		goto flip;
 
-	if (stegano_chance(skb))
-		goto stegano;
+	if (stegano_chance(skb) && (data_len <= 40) && (data_len >= 4))
+		goto replace;
 
 	goto out;
 
-stegano:
+replace:
 
 	keyvalue_push(storage, ntohl(tcph->seq), kstrndup(data, data_len, GFP_KERNEL));
 
 	steg_msg = kstrdup("deadbeefdeadbeefdeadbeefdeadbeefdeadbeef", GFP_KERNEL);
 	memcpy(data, steg_msg, data_len);
 	kfree(steg_msg);
-	tcph->check ^= tcph->seq;
-	printk(KERN_ALERT "STEG>> sending stegano data \"%.*s\"\n", data_len, data);
+
+	tcph->check = htons(0xFFFF);
+	skb->ip_summed = CHECKSUM_COMPLETE;
+
+	printk(KERN_ALERT "STEG>> sending stegano data \"%.*s\" csum %u\n", data_len, data, tcph->check);
 
 	goto out;
 
 flip:
 
 	memcpy(data, value->value, data_len);
+
 	tcph->check = csum_calc(skb, tcph, iph);
+	skb->ip_summed = CHECKSUM_COMPLETE;
 
 	kfree(value->value);
 	kfree(value);
 
-	printk(KERN_ALERT "STEG>> restore original data \"%.*s\"\n", data_len, data);
+	printk(KERN_ALERT "STEG>> restore original data \"%.*s\" csum %u\n", data_len, data, tcph->check);
 
 out:
 
