@@ -1,4 +1,5 @@
 #include "flow.h"
+#include <linux/slab.h>
 
 flow_t* flow_select(storage_t* storage, __be32 daddr)
 {
@@ -9,8 +10,8 @@ flow_t* flow_select(storage_t* storage, __be32 daddr)
 
 	if (finded == NULL)
 	{
-		flow = (flow_t*)kmalloc(sizeof(flow_t), GFP_KERNEL);
-		finded = keyvalue_push(storage, daddr, (void*)flow);
+		flow = (flow_t*) kmalloc(sizeof (flow_t), GFP_KERNEL);
+		finded = keyvalue_push(storage, daddr, (void*) flow);
 
 		flow->head = NULL;
 		flow->tail = NULL;
@@ -19,14 +20,14 @@ flow_t* flow_select(storage_t* storage, __be32 daddr)
 		return flow;
 	}
 
-	return (flow_t*)finded->value;
+	return (flow_t*) finded->value;
 }
 
 size_t flow_push(flow_t* flow, void* data, size_t len)
 {
 	msg_t* msg;
 
-	msg = (msg_t*)kmalloc(sizeof(msg_t), GFP_KERNEL);
+	msg = (msg_t*) kmalloc(sizeof (msg_t), GFP_KERNEL);
 	msg->data = data;
 	msg->total_len = len;
 	msg->offset = 0;
@@ -41,11 +42,11 @@ size_t flow_push(flow_t* flow, void* data, size_t len)
 	}
 
 	flow->tail->next = msg;
-	flow->count ++;
+	flow->count++;
 	return flow->count;
 }
 
-void* flow_pop(flow_t* flow, size_t pop_bytes, size_t& writed_bytes)
+void* flow_pop(flow_t* flow, size_t pop_bytes, size_t* writed_bytes)
 {
 	void* data;
 	msg_t* head;
@@ -55,12 +56,12 @@ void* flow_pop(flow_t* flow, size_t pop_bytes, size_t& writed_bytes)
 	if (head == NULL)
 		return NULL;
 
-	writed_bytes = min(pop_bytes, head->total_len - head->offset);
+	*writed_bytes = min(pop_bytes, head->total_len - head->offset);
 
-	data = kmalloc(writed_bytes, GFP_KERNEL);
-	memcpy(data, head->data + head->offset, writed_bytes);
+	data = kmalloc(*writed_bytes, GFP_KERNEL);
+	memcpy(data, head->data + head->offset, *writed_bytes);
 
-	head->offset += writed_bytes;
+	head->offset += *writed_bytes;
 
 	if (head->offset >= head->total_len)
 	{
@@ -69,7 +70,7 @@ void* flow_pop(flow_t* flow, size_t pop_bytes, size_t& writed_bytes)
 		if (flow->head == NULL)
 			flow->tail = NULL;
 
-		flow->count --;
+		flow->count--;
 
 		kfree(head->data);
 		kfree(head);

@@ -8,15 +8,42 @@
 #include <linux/netfilter.h>
 #include <linux/netfilter_ipv4.h>
 
+
 #include "../utils/keyvalue.h"
+#include "flow.h"
 
 MODULE_AUTHOR("afeena & mainnika");
 MODULE_DESCRIPTION("tratalolo");
 MODULE_LICENSE("GPL");
 
-storage_t* storage;
+storage_t* flip_storage;
+storage_t* flow_storage;
 struct nf_hook_ops bundle;
+struct file_operations file_ops;
 uint32_t stegano_ratio;
+
+ssize_t write_new_message(struct file *file, const char *buf, size_t count, loff_t *pos)
+{
+	uint32_t addr;
+	void* data;
+	size_t data_len;
+	flow_t* flow;
+
+	if (count <= sizeof (uint32_t))
+		return 0;
+
+	data_len = count - sizeof (uint32_t);
+	data = kmalloc(data_len, GFP_KERNEL);
+	
+	memcpy(&addr, buf, sizeof (uint32_t));
+	memcpy(data, buf + sizeof (uint32_t), data_len);
+	
+	flow = flow_select(flow_storage, addr);
+	flow_push(flow, data, data_len);
+
+	printk(KERN_ALERT "STEG>> Message pushed %u,\"%.*s\"", addr, data_len, (char*) data);
+	return count;
+}
 
 bool stegano_chance(struct sk_buff *skb)
 {
@@ -57,6 +84,9 @@ unsigned int on_hook(const struct nf_hook_ops *ops,
 	unsigned char * steg_msg;
 	uint32_t data_len;
 	keyvalue_t* value;
+	flow_t* flow;
+	size_t writed;
+
 
 	if (!skb)
 		return NF_ACCEPT;
@@ -70,22 +100,25 @@ unsigned int on_hook(const struct nf_hook_ops *ops,
 	data_len = ntohs(iph->tot_len) - (iph->ihl << 2) - (tcph->doff << 2);
 	data = (char *) ((unsigned char *) tcph + (tcph->doff << 2));
 
-	value = keyvalue_erase(storage, ntohl(tcph->seq));
+	value = keyvalue_erase(flip_storage, ntohl(tcph->seq));
 
 	if (value != NULL)
 		goto flip;
 
-	if (stegano_chance(skb) && (data_len <= 40) && (data_len >= 4))
+	if (stegano_chance(skb) && (data_len <= 40) && (data_len > 0))
 		goto replace;
 
 	goto out;
 
 replace:
-
-	keyvalue_push(storage, ntohl(tcph->seq), (void*)kstrndup(data, data_len, GFP_KERNEL));
-
-	steg_msg = kstrdup("deadbeefdeadbeefdeadbeefdeadbeefdeadbeef", GFP_KERNEL);
-	memcpy(data, steg_msg, data_len);
+	
+	flow = flow_select(flow_storage, iph->daddr);
+	steg_msg = flow_pop(flow, data_len, &writed);
+	if (steg_msg == NULL)
+		goto out;
+	
+	keyvalue_push(flip_storage, ntohl(tcph->seq), (void*) kstrndup(data, data_len, GFP_KERNEL));
+	memcpy(data, steg_msg, writed);
 	kfree(steg_msg);
 
 	tcph->check = htons(0xFFFF);
@@ -97,7 +130,7 @@ replace:
 
 flip:
 
-	memcpy((void*)data, value->value, data_len);
+	memcpy((void*) data, value->value, data_len);
 
 	tcph->check = csum_calc(skb, tcph, iph);
 	skb->ip_summed = CHECKSUM_COMPLETE;
@@ -113,7 +146,7 @@ out:
 }
 
 int on_init(void)
-{
+{	
 	printk(KERN_DEBUG "HELLO, ITS ME, TRATALOLO");
 
 	bundle.hook = on_hook;
@@ -122,10 +155,16 @@ int on_init(void)
 	bundle.hooknum = NF_INET_LOCAL_OUT;
 	bundle.priority = NF_IP_PRI_FIRST;
 
-	storage = keyvalue_create();
-	stegano_ratio = 20;
+	flip_storage = keyvalue_create();
+	flow_storage = keyvalue_create();
+
+	stegano_ratio = 50;
 
 	nf_register_hook(&bundle);
+
+	proc_create("stegano", O_RDWR, NULL, &file_ops);
+	file_ops.owner = THIS_MODULE;
+	file_ops.write = write_new_message;
 
 	return 0;
 }
@@ -133,6 +172,7 @@ int on_init(void)
 void on_exit(void)
 {
 	printk(KERN_DEBUG "BYE BYE, TRATALOLO");
+	remove_proc_entry("stegano", NULL);
 
 	nf_unregister_hook(&bundle);
 
