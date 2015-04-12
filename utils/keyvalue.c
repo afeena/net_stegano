@@ -9,8 +9,8 @@ storage_t* keyvalue_create(void)
 
 	storage = kmalloc(sizeof (storage_t), GFP_KERNEL);
 
-	storage->head = kmalloc(sizeof (keyvalue_t), GFP_KERNEL);
-	storage->tail = kmalloc(sizeof (keyvalue_t), GFP_KERNEL);
+	storage->head = kmalloc(sizeof (keyvalue_t*), GFP_KERNEL);
+	storage->tail = kmalloc(sizeof (keyvalue_t*), GFP_KERNEL);
 	storage->size = 0;
 
 	(*storage->head) = NULL;

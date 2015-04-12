@@ -40,7 +40,7 @@ __sum16 csum_calc(struct sk_buff *skb,
 	tcph->check = tcp_v4_check(skb->len - (iph->ihl << 2),
 				iph->saddr, iph->daddr,
 				csum_partial((char *) tcph, skb->len - (iph->ihl << 2), 0));
-	
+
 	swap(old, tcph->check);
 	return old;
 }
