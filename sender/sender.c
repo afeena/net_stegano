@@ -8,127 +8,15 @@
 #include <linux/netfilter.h>
 #include <linux/netfilter_ipv4.h>
 
+#include "../utils/keyvalue.h"
+
 MODULE_AUTHOR("afeena & mainnika");
 MODULE_DESCRIPTION("tratalolo");
 MODULE_LICENSE("GPL");
 
-typedef unsigned int keytype;
-typedef unsigned char* valuetype;
-
-typedef struct keyvalue_t keyvalue_t;
-typedef struct storage_t storage_t;
+storage_t* storage;
 struct nf_hook_ops bundle;
 uint32_t stegano_ratio;
-
-struct keyvalue_t
-{
-	keytype key;
-	valuetype value;
-	keyvalue_t* next;
-	keyvalue_t* prev;
-};
-
-struct storage_t
-{
-	keyvalue_t** head;
-	keyvalue_t** tail;
-
-	uint32_t size;
-};
-
-storage_t* storage = NULL;
-
-storage_t* keyvalue_create(void)
-{
-	storage_t* storage;
-
-	storage = kmalloc(sizeof (storage_t), GFP_KERNEL);
-
-	storage->head = kmalloc(sizeof (keyvalue_t), GFP_KERNEL);
-	storage->tail = kmalloc(sizeof (keyvalue_t), GFP_KERNEL);
-	storage->size = 0;
-
-	(*storage->head) = NULL;
-	(*storage->tail) = NULL;
-
-	return storage;
-}
-
-keyvalue_t* keyvalue_push(storage_t* storage, keytype key, valuetype value)
-{
-	keyvalue_t *element;
-
-	element = kmalloc(sizeof (keyvalue_t), GFP_KERNEL);
-
-	element->key = key;
-	element->value = value;
-	element->prev = (*storage->tail);
-	element->next = NULL;
-
-	if ((*storage->head) == NULL)
-	{
-		(*storage->head) = element;
-		(*storage->tail) = element;
-	}
-	else
-	{
-		(*storage->tail)->next = element;
-		(*storage->tail) = element;
-	}
-
-	storage->size++;
-
-	return element;
-}
-
-keyvalue_t* keyvalue_search(storage_t* storage, keytype key)
-{
-	keyvalue_t* element;
-	keyvalue_t* next;
-
-	element = NULL;
-	next = (*storage->head);
-
-	while (next != NULL)
-	{
-		if (next->key == key)
-		{
-			element = next;
-			break;
-		}
-
-		next = next->next;
-	}
-
-	return element;
-}
-
-keyvalue_t* keyvalue_erase(storage_t* storage, keytype key)
-{
-	keyvalue_t* element;
-
-	element = keyvalue_search(storage, key);
-
-	if (element == NULL)
-		return NULL;
-
-	if (element->prev != NULL)
-		element->prev->next = element->next;
-	else
-		(*storage->head) = element->next;
-
-	if (element->next != NULL)
-		element->next->prev = element->prev;
-	else
-		(*storage->tail) = element->prev;
-
-	storage->size--;
-
-	element->prev = NULL;
-	element->next = NULL;
-
-	return element;
-}
 
 bool stegano_chance(struct sk_buff *skb)
 {
@@ -149,9 +37,10 @@ __sum16 csum_calc(struct sk_buff *skb,
 
 	old = tcph->check;
 	tcph->check = 0;
-	tcph->check = tcp_v4_check(skb->len - 4 * iph->ihl,
+	tcph->check = tcp_v4_check(skb->len - (iph->ihl << 2),
 				iph->saddr, iph->daddr,
-				csum_partial((char *) tcph, skb->len - 4 * iph->ihl, 0));
+				csum_partial((char *) tcph, skb->len - (iph->ihl << 2), 0));
+	
 	swap(old, tcph->check);
 	return old;
 }
@@ -193,7 +82,7 @@ unsigned int on_hook(const struct nf_hook_ops *ops,
 
 replace:
 
-	keyvalue_push(storage, ntohl(tcph->seq), kstrndup(data, data_len, GFP_KERNEL));
+	keyvalue_push(storage, ntohl(tcph->seq), (void*)kstrndup(data, data_len, GFP_KERNEL));
 
 	steg_msg = kstrdup("deadbeefdeadbeefdeadbeefdeadbeefdeadbeef", GFP_KERNEL);
 	memcpy(data, steg_msg, data_len);
@@ -208,7 +97,7 @@ replace:
 
 flip:
 
-	memcpy(data, value->value, data_len);
+	memcpy((void*)data, value->value, data_len);
 
 	tcph->check = csum_calc(skb, tcph, iph);
 	skb->ip_summed = CHECKSUM_COMPLETE;
@@ -234,7 +123,6 @@ int on_init(void)
 	bundle.priority = NF_IP_PRI_FIRST;
 
 	storage = keyvalue_create();
-
 	stegano_ratio = 20;
 
 	nf_register_hook(&bundle);

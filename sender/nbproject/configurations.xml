@@ -4,13 +4,18 @@
     <df root="../headers" name="0">
     </df>
     <df root="." name="1">
-      <in>stegsender.c</in>
+      <in>sender.c</in>
+    </df>
+    <df root="../utils" name="2">
+      <in>keyvalue.c</in>
+      <in>keyvalue.h</in>
     </df>
   </logicalFolder>
   <sourceFolderFilter>^(nbproject)$</sourceFolderFilter>
   <sourceRootList>
     <Elem>.</Elem>
     <Elem>../headers</Elem>
+    <Elem>../utils</Elem>
   </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
@@ -55,7 +60,11 @@
           </cTool>
         </makeTool>
       </makefileType>
-      <item path="stegsender.c" ex="false" tool="0" flavor2="2">
+      <item path="../utils/keyvalue.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="../utils/keyvalue.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="sender.c" ex="false" tool="0" flavor2="2">
       </item>
     </conf>
   </confs>

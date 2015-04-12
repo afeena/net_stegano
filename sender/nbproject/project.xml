@@ -12,6 +12,7 @@
             <sourceRootList>
                 <sourceRootElem>.</sourceRootElem>
                 <sourceRootElem>../headers</sourceRootElem>
+                <sourceRootElem>../utils</sourceRootElem>
             </sourceRootList>
             <confList>
                 <confElem>
